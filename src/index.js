@@ -16,14 +16,14 @@ class MarkdownToPdf {
                 .map(module => this.convert(module.resource))
 
             Promise.all(convertPromises).then(resources => {
-                resources.forEach((str, index) => {
-                    let fileName = this.options.filename.replace(/(\[name\])/g, /.+(\/|\\)(.+)\.md$/.exec(mdModulesResource[index])[2])
+                resources.forEach((data, index) => {
+                    let fileName = this.options.filename.replace(/(\[name\])/g, /.+(\/|\\)(.+)\.md$/.exec(data.path)[2])
                     compilation.assets[fileName] = compilation.assets[fileName] || {
                         source: function() {
-                            return str
+                            return data.pdfStr
                         },
                         size: function() {
-                            return str.length
+                            return data.pdfStr.length
                         }
                     }
                 })
@@ -36,13 +36,11 @@ class MarkdownToPdf {
 
     convert(path) {
         return new Promise((resolve, reject) => {
-            markdownPdf({
-                cssPath: this.options.cssPath
-            }).from(path).to.buffer(null, function(err, PdfStr) {
+            markdownPdf(this.options).from(path).to.buffer(null, function(err, pdfStr) {
                 if (err) {
                     reject(e)
                 } else {
-                    resolve(PdfStr)
+                    resolve({path: path, pdfStr: pdfStr})
                 }
             })
         })
