@@ -1,2 +1,2 @@
 # webpack-markdown-pdf-plugin
-webpack transfer markdown to pdf plugin
+webpack plugin that convert Markdown file to PDF.
