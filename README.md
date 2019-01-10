@@ -1,7 +1,7 @@
 # webpack-markdown-pdf-plugin
 >webpack plugin that convert Markdown file to PDF. 
 
-engine power by [markdown-pdf](https://www.npmjs.com/package/markdown-pdf).
+engine powerd by [markdown-pdf](https://www.npmjs.com/package/markdown-pdf).
 
 css beased [github-markdown-css](https://www.npmjs.com/package/github-markdown-css)
 
