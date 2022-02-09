@@ -1,11 +1,28 @@
 const markdownPdf = require('markdown-pdf')
 const path = require('path')
+const through2 = require('through2')
 
 class MarkdownToPdf {
     constructor(options) {
         this.options = Object.assign({}, {
             filename: './pdf/[name].pdf',
-            cssPath: path.resolve(__dirname, 'resource', 'github-markdown.css')
+            cssPath: path.resolve(__dirname, './resource/github-markdown.css'),
+            preProcessHtml: function() {
+                let isBegin = true
+                return through2({ objectMode: true, allowHalfOpen: false }, function (chunk, enc, callback) {
+                    if (isBegin) {
+                        const prefix = Buffer.from('<div class="markdown-body">', 'UTF-8')
+                        this.push(Buffer.concat([prefix, chunk]))
+                        isBegin = false
+                    } else {
+                        this.push(chunk)
+                    }
+                    callback()
+                }, function(cb) {
+                    this.push(Buffer.from('</div>', 'UTF-8'));
+                    cb()
+                })
+            }
         }, options)
     }
 

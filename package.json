@@ -24,7 +24,10 @@
   },
   "homepage": "https://github.com/Richard-Choooou/webpack-markdown-pdf-plugin#readme",
   "devDependencies": {
-    "github-markdown-css": "^2.10.0",
-    "markdown-pdf": "^9.0.0"
+    "github-markdown-css": "^5.1.0",
+    "markdown-pdf": "^10.0.0"
+  },
+  "dependencies": {
+    "through2": "^4.0.2"
   }
 }
