@@ -1,6 +1,6 @@
 {
   "name": "webpack-markdown-pdf-plugin",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "webpack plugin that convert Markdown file to PDF.",
   "main": "src/index.js",
   "scripts": {
@@ -24,10 +24,11 @@
   },
   "homepage": "https://github.com/Richard-Choooou/webpack-markdown-pdf-plugin#readme",
   "devDependencies": {
-    "github-markdown-css": "^5.1.0",
-    "markdown-pdf": "^10.0.0"
+    
   },
   "dependencies": {
-    "through2": "^4.0.2"
+    "through2": "^4.0.2",
+    "github-markdown-css": "^5.1.0",
+    "markdown-pdf": "^10.0.0"
   }
 }
